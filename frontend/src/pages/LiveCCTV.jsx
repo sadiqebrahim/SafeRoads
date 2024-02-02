@@ -41,7 +41,6 @@ export default function LiveCCTV() {
 
   return (
     <Container
-    maxWidth={false}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -49,8 +48,7 @@ export default function LiveCCTV() {
         justifyContent: "center",
         minHeight: "100vh",
         paddingLeft: 2,
-        paddingRight: 2,
-        backgroundColor: "#f0f0f0", 
+        paddingRight: 2, 
       }}
     >
       <Tooltip title="Back to Home">
