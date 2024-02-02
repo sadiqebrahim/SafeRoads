@@ -1,0 +1,64 @@
+from flask import Flask, jsonify, send_from_directory
+from flask_cors import CORS
+import cv2
+from ultralytics import YOLO
+from datetime import datetime
+import os
+
+app = Flask(__name__, static_folder='processed_videos')
+CORS(app)
+
+yolo = YOLO("model/SafeRoads.pt")
+
+demo_video_path = 'location4.mp4'
+processed_videos_folder = 'processed_videos'
+
+def process_video():
+    video_capture = cv2.VideoCapture(demo_video_path)
+    result = None
+    count = 0
+
+    while True:
+        ret, frame = video_capture.read()
+
+        if not ret:
+            break
+
+        predicted = yolo(frame)
+        boxes = predicted[0].boxes.xyxy.cpu()
+        clss = predicted[0].boxes.cls.cpu().tolist()
+        confidences = predicted[0].boxes.conf.cpu().tolist()
+
+        if len(clss) != 0:
+            accident = 1
+            if count == 0:
+                time = datetime.now().strftime('%H_%M_%S')
+                result_filename = f'{demo_video_path.split(".")[0]}-{time}.mp4'
+                result = cv2.VideoWriter(os.path.join(processed_videos_folder, result_filename),
+                                         cv2.VideoWriter_fourcc(*'MP4V'), 10, (frame.shape[1], frame.shape[0]))
+                count = 120
+        else:
+            accident = 0
+
+        for box in boxes:
+            box = [int(coord) for coord in box]
+            cv2.rectangle(frame, (box[0], box[1]), (box[2], box[3]), (0, 255, 0), 2)
+            cv2.putText(frame, str('accident'), (box[0], box[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+        if result is not None and (count > 0 or accident != 0):
+            result.write(frame)
+            count -= 1
+
+        if count == 0 and result is not None:
+            result.release()
+
+    video_capture.release()
+    return {"processed_video_filename": result_filename}
+
+@app.route("/process_video", methods=["POST"])
+def handle_process_video():
+    result = process_video()
+    return jsonify(result)
+
+if __name__ == "__main__":
+    app.run(debug=True)
