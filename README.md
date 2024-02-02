@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ## Screenshots
 
 Home of the Web Application
-![S1](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
+![S1](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/home.png?raw=true)
 
 Examples of detection
 ![S2](https://github.com/sadiqebrahim/SafeRoads/blob/readme/home.png?raw=true)
