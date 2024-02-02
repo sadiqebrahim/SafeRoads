@@ -30,10 +30,10 @@ pip install -r requirements.txt
 
 ## Screenshots
 
-Home of the Web Application
+### Home of the Web Application
 ![S1](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/home.png?raw=true)
 
-Examples of detection
+### Examples of detection<br>
 ![S2](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred1.jpg?raw=true)
 ![S3](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred2.jpg?raw=true)
 ![S4](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred3.jpg?raw=true)
