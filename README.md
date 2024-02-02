@@ -34,9 +34,9 @@ Home of the Web Application
 ![S1](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/home.png?raw=true)
 
 Examples of detection
-![S2](https://github.com/sadiqebrahim/SafeRoads/blob/readme/home.png?raw=true)
-![S3](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
-![S4](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
+![S2](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred1.jpg?raw=true)
+![S3](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred2.jpg?raw=true)
+![S4](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred3.jpg?raw=true)
 
 ## Additional Comments
 
