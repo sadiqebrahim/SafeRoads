@@ -15,18 +15,60 @@ SafeRoads is an advanced AI-powered system designed to enhance road safety by de
 ### Clone the Repository
 
 Clone the SafeRoads repository to your local machine using the following command:
-
 ```bash
 git clone https://github.com/sadiqebrahim/SafeRoads.git
 ```
 
-### Install Dependencies
+Navigate to the root directory of the project
+```bash
+cd SafeRoads
+```
 
-Navigate to the project directory and install the requirements
+### Frontend Setup
 
+Navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+Install dependencies for frontend:
+```bash
+npm install
+```
+
+### Backend Setup
+Open a new terminal in the project's root directory and navigate to the backend directory:
+```bash
+cd backend
+```
+
+Install dependencies for backend:
 ```bash
 pip install -r requirements.txt
 ```
+
+### Run the Application
+<b>Backend : </b><br/>
+Open a new terminal in the project's root directory and navigate to the backend directory:
+```bash
+cd backend
+```
+Run the backend:
+```bash
+python app.py
+```
+The backend server will start at http://localhost:5000<br/><br/>
+<b>Frontend : </b><br/>
+Open a new terminal in the project's root directory and navigate to the frontend directory:
+```bash
+cd frontend
+```
+Run the frontend:
+```bash
+npm start
+```
+Now, you should be able to access the full application by visiting http://localhost:3000 in your web browser.
+
 
 ## Screenshots
 
