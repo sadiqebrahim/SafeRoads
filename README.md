@@ -6,43 +6,39 @@ SafeRoads is an advanced AI-powered system designed to enhance road safety by de
 
 ## Table of Contents
 
-- [High-Level Design](#high-level-design)
-- [Program Logic](#program-logic)
-- [Tech Stack Used](#tech-stack-used)
-- [Limitations and Future Scope](#limitations-and-future-scope)
-- [Screenshots of Outputs](#screenshots-of-outputs)
+- [Installation](#installation)
+- [Screenshots of Outputs](#screenshots)
 - [Additional Comments](#additional-comments)
 
-## High-Level Design
+## Installation
 
-SafeRoads follows a comprehensive system architecture, incorporating video input processing, AI-based accident detection, and real-time notification systems. The high-level design includes components like computer vision libraries, deep learning frameworks, and cloud services for scalability.
+### Clone the Repository
 
-![High-Level Design Flowchart](link_to_flowchart_image)
+Clone the SafeRoads repository to your local machine using the following command:
 
-## Program Logic
+```bash
+git clone https://github.com/sadiqebrahim/SafeRoads.git
+```
 
-The core of SafeRoads lies in its program logic, utilizing object detection, motion analysis, and machine learning for accurate accident detection. The decision-making process is outlined to ensure timely alerts are triggered, contributing to a rapid response to potential accidents.
+### Install Dependencies
 
-## Tech Stack Used
+Navigate to the project directory and install the requirements
 
-SafeRoads leverages a sophisticated tech stack to achieve its objectives. The stack includes popular computer vision libraries such as OpenCV, deep learning frameworks like TensorFlow and PyTorch, Python as the primary programming language, and cloud services such as AWS or Azure for scalability.
+```bash
+pip install -r requirements.txt
+```
 
-## Limitations and Future Scope
+## Screenshots
 
-As with any technology, SafeRoads has its limitations, including challenges related to accuracy in diverse weather conditions and potential false positives/negatives. The README.md discusses these limitations transparently. Moreover, it outlines the future scope of the project, including integration with weather data, collaboration with traffic management systems, and ongoing algorithm refinement.
+Home of the Web Application
+![S1](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
 
-## Screenshots of Outputs
-
-Showcase screenshots of SafeRoads in action, demonstrating different use-cases, including normal traffic conditions, accident detection, and emergency service notifications.
-
-![Screenshot 1](link_to_screenshot_1)
-![Screenshot 2](link_to_screenshot_2)
+Examples of detection
+![S2](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
+![S3](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
+![S4](https://github.com/sadiqebrahim/SafeRoads/blob/[branch]/image.jpg?raw=true)
 
 ## Additional Comments
 
-In this section, acknowledge any challenges faced during development, express gratitude for collaboration and support, and commit to ongoing improvements and updates.
-
-## Thank You
-
-Express gratitude for the audience's attention, provide contact information for inquiries, and share social media handles and website details for updates.
+**Notice:** This project is actively under development, and we welcome contributions from the community.
 
