@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import cv2
 from ultralytics import YOLO
@@ -71,6 +71,11 @@ def handle_process_videos():
         results.append(result)
 
     return jsonify(results)
+
+# New route to serve processed videos
+@app.route("/processed_videos/<filename>")
+def serve_processed_video(filename):
+    return send_from_directory(processed_videos_folder, filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
