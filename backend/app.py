@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify
 from flask_cors import CORS
 import cv2
 from ultralytics import YOLO
@@ -10,11 +10,11 @@ CORS(app)
 
 yolo = YOLO("model/SafeRoads.pt")
 
-demo_video_path = 'location4.mp4'
 processed_videos_folder = 'processed_videos'
 
-def process_video():
-    video_capture = cv2.VideoCapture(demo_video_path)
+def process_video(video_path):
+    video_capture = cv2.VideoCapture(video_path)
+    result_filename = None
     result = None
     count = 0
 
@@ -33,7 +33,7 @@ def process_video():
             accident = 1
             if count == 0:
                 time = datetime.now().strftime('%H_%M_%S')
-                result_filename = f'{demo_video_path.split(".")[0]}-{time}.mp4'
+                result_filename = f'{video_path.split(".")[0]}-{time}.mp4'
                 result = cv2.VideoWriter(os.path.join(processed_videos_folder, result_filename),
                                          cv2.VideoWriter_fourcc(*'MP4V'), 10, (frame.shape[1], frame.shape[0]))
                 count = 120
@@ -55,10 +55,22 @@ def process_video():
     video_capture.release()
     return {"processed_video_filename": result_filename}
 
-@app.route("/process_video", methods=["POST"])
-def handle_process_video():
-    result = process_video()
-    return jsonify(result)
+video_paths = [
+    'location1.mp4',
+    'location2.mp4',
+    'location3.mp4',
+    'location4.mp4',
+]
+
+@app.route("/process_videos", methods=["POST"])
+def handle_process_videos():
+    results = []
+
+    for video_path in video_paths:
+        result = process_video(video_path)
+        results.append(result)
+
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(debug=True)

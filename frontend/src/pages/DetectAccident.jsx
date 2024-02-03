@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -15,38 +15,51 @@ import { Link } from "react-router-dom";
 
 export default function DetectAccident() {
   const [detectedAccidents, setDetectedAccidents] = useState([]);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleDetectAccident = async () => {
     try {
-      const response = await fetch("http://localhost:5000/process_video", {
+      setIsProcessing(true);
+
+      const response = await fetch("http://localhost:5000/process_videos", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
       });
+
       if (response.ok) {
-        const result = await response.json();
-        if (result.processed_video_filename) {
-          const { location, timestamp } = extractLocationAndTime(
-            result.processed_video_filename
-          );
-          const newDetectedAccident = {
-            id: Date.now(),
-            details: {
-              location,
-              timestamp,
-            },
-            videoFileName: result.processed_video_filename,
-          };
-          setDetectedAccidents((prevAccidents) => [
-            newDetectedAccident,
-            ...prevAccidents,
-          ]);
-        } else {
-          console.error("Error processing video");
-        }
+        const results = await response.json();
+
+        results.forEach((result) => {
+          if (result.processed_video_filename) {
+            const { location, timestamp } = extractLocationAndTime(
+              result.processed_video_filename
+            );
+            const newDetectedAccident = {
+              id: Date.now(),
+              details: {
+                location,
+                timestamp,
+              },
+              videoFileName: result.processed_video_filename,
+            };
+            setDetectedAccidents((prevAccidents) => [
+              newDetectedAccident,
+              ...prevAccidents,
+            ]);
+          } else {
+            console.error("Error processing video");
+          }
+        });
       } else {
-        console.error("Error processing video");
+        console.error("Error processing videos");
       }
     } catch (error) {
-      console.error("Error processing video", error);
+      console.error("Error processing videos", error);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -87,8 +100,9 @@ export default function DetectAccident() {
             color="primary"
             onClick={handleDetectAccident}
             sx={{ marginTop: "30px" }}
+            disabled={isProcessing}
           >
-            Detect Accident
+            Detect Accidents
           </Button>
         </Grid>
         {detectedAccidents.map((detectedAccident) => (
