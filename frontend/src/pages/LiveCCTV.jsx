@@ -14,22 +14,22 @@ import { Link } from "react-router-dom";
 export default function LiveCCTV() {
   const videos = [
     {
-      path: "/demo-videos/location1.mp4",
+      path: "/demo-videos/Gotham City.mp4",
     },
     {
-      path: "/demo-videos/location2.mp4",
+      path: "/demo-videos/Wakanda.mp4",
     },
     {
-      path: "/demo-videos/location3.mp4",
+      path: "/demo-videos/Kryptonopolis.mp4",
     },
     {
-      path: "/demo-videos/location4.mp4",
+      path: "/demo-videos/Vormir.mp4",
     },
     {
-      path: "/demo-videos/location1.mp4",
+      path: "/demo-videos/Gotham City.mp4",
     },
     {
-      path: "/demo-videos/location2.mp4",
+      path: "/demo-videos/Wakanda.mp4",
     },
   ];
 

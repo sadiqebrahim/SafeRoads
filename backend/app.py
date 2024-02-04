@@ -33,9 +33,9 @@ def process_video(video_path):
             accident = 1
             if count == 0:
                 time = datetime.now().strftime('%H_%M_%S')
-                result_filename = f'{video_path.split(".")[0]}-{time}.mp4'
+                result_filename = f'{video_path.split(".")[0]}-{time}.webm'
                 result = cv2.VideoWriter(os.path.join(processed_videos_folder, result_filename),
-                                         cv2.VideoWriter_fourcc(*'MP4V'), 10, (frame.shape[1], frame.shape[0]))
+                                         cv2.VideoWriter_fourcc(*'vp80'), 10, (frame.shape[1], frame.shape[0]))
                 count = 120
         else:
             accident = 0
@@ -56,10 +56,10 @@ def process_video(video_path):
     return {"processed_video_filename": result_filename}
 
 video_paths = [
-    'location1.mp4',
-    'location2.mp4',
-    'location3.mp4',
-    'location4.mp4',
+    'Gotham City.mp4',
+    'Wakanda.mp4',
+    'Kryptonopolis.mp4',
+    'Vormir.mp4',
 ]
 
 @app.route("/process_videos", methods=["POST"])
