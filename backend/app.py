@@ -5,6 +5,8 @@ from ultralytics import YOLO
 from datetime import datetime
 import os
 
+print("\n\nI AM BATMAN!!\n\n")
+
 app = Flask(__name__, static_folder='processed_videos')
 CORS(app)
 
