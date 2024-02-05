@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -11,11 +11,22 @@ import {
   Tooltip,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import RadarIcon from "@mui/icons-material/Radar";
 import { Link } from "react-router-dom";
 
 export default function DetectAccident() {
   const [detectedAccidents, setDetectedAccidents] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    const storedAccidents = JSON.parse(
+      localStorage.getItem("detectedAccidents")
+    );
+    if (storedAccidents) {
+      setDetectedAccidents(storedAccidents);
+    }
+  }, []);
 
   const handleDetectAccident = async () => {
     try {
@@ -31,28 +42,35 @@ export default function DetectAccident() {
 
       if (response.ok) {
         const results = await response.json();
+        const newAccidents = results
+          .map((result) => {
+            if (result.processed_video_filename) {
+              const { location, timestamp } = extractLocationAndTime(
+                result.processed_video_filename
+              );
+              return {
+                id: Date.now(),
+                details: {
+                  location,
+                  timestamp,
+                },
+                videoFileName: result.processed_video_filename,
+              };
+            } else {
+              console.error("Error processing video");
+              return null;
+            }
+          })
+          .filter(Boolean);
 
-        results.forEach((result) => {
-          if (result.processed_video_filename) {
-            const { location, timestamp } = extractLocationAndTime(
-              result.processed_video_filename
-            );
-            const newDetectedAccident = {
-              id: Date.now(),
-              details: {
-                location,
-                timestamp,
-              },
-              videoFileName: result.processed_video_filename,
-            };
-            setDetectedAccidents((prevAccidents) => [
-              newDetectedAccident,
-              ...prevAccidents,
-            ]);
-          } else {
-            console.error("Error processing video");
-          }
-        });
+        setDetectedAccidents((prevAccidents) => [
+          ...newAccidents,
+          ...prevAccidents,
+        ]);
+        localStorage.setItem(
+          "detectedAccidents",
+          JSON.stringify([...newAccidents, ...detectedAccidents])
+        );
       } else {
         console.error("Error processing videos");
       }
@@ -61,6 +79,11 @@ export default function DetectAccident() {
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handleRemoveAllAccidents = () => {
+    setDetectedAccidents([]);
+    localStorage.removeItem("detectedAccidents");
   };
 
   const extractLocationAndTime = (filename) => {
@@ -82,7 +105,7 @@ export default function DetectAccident() {
   };
 
   return (
-    <Container disableGutters>
+    <Container disableGutters style={{ marginBottom: "30px" }}>
       <Tooltip title="Back to Home">
         <Link
           to="/"
@@ -99,15 +122,26 @@ export default function DetectAccident() {
             variant="contained"
             color="primary"
             onClick={handleDetectAccident}
-            sx={{ marginTop: "30px" }}
+            startIcon={<RadarIcon />}
+            sx={{ marginTop: "30px", marginRight: "10px" }}
             disabled={isProcessing}
           >
             Detect Accidents
           </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleRemoveAllAccidents}
+            sx={{ marginTop: "30px" }}
+            startIcon={<DeleteForeverIcon />}
+            disabled={detectedAccidents.length === 0}
+          >
+            Remove All Accidents
+          </Button>
         </Grid>
         {detectedAccidents.map((detectedAccident) => (
-          <Grid item xs={12} key={detectedAccident.id}>
-            <Card sx={{height:"300px"}}>
+          <Grid item xs={12} key={detectedAccident.details.location}>
+            <Card sx={{ height: "300px" }}>
               <CardHeader title="Accident Detected!" />
               <div
                 style={{
@@ -117,8 +151,8 @@ export default function DetectAccident() {
                 }}
               >
                 <video
-                  width="300"
-                  style={{ marginLeft: "10px", paddingBottom: "8px" }}
+                  width="300px"
+                  style={{ marginLeft: "10px" }}
                   autoPlay
                   muted
                   loop
