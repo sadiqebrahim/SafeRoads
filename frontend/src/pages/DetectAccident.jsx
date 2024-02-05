@@ -120,7 +120,7 @@ export default function DetectAccident() {
         <Grid item xs={12} sx={{ textAlign: "center" }}>
           <Button
             variant="contained"
-            color="primary"
+            color="success"
             onClick={handleDetectAccident}
             startIcon={<RadarIcon />}
             sx={{ marginTop: "30px", marginRight: "10px" }}
@@ -130,7 +130,7 @@ export default function DetectAccident() {
           </Button>
           <Button
             variant="contained"
-            color="secondary"
+            color="error"
             onClick={handleRemoveAllAccidents}
             sx={{ marginTop: "30px" }}
             startIcon={<DeleteForeverIcon />}
