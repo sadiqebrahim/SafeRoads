@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -107,7 +107,7 @@ export default function DetectAccident() {
         </Grid>
         {detectedAccidents.map((detectedAccident) => (
           <Grid item xs={12} key={detectedAccident.id}>
-            <Card>
+            <Card sx={{height:"300px"}}>
               <CardHeader title="Accident Detected!" />
               <div
                 style={{
