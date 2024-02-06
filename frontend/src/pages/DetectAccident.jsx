@@ -13,6 +13,7 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import RadarIcon from "@mui/icons-material/Radar";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 
 export default function DetectAccident() {
@@ -139,6 +140,11 @@ export default function DetectAccident() {
             Remove All Accidents
           </Button>
         </Grid>
+        {isProcessing && (
+          <Grid item xs={12} sx={{ textAlign: "center" }}>
+            <CircularProgress size={40} sx={{ marginTop: 2 }} />
+          </Grid>
+        )}
         {detectedAccidents.map((detectedAccident) => (
           <Grid item xs={12} key={detectedAccident.details.location}>
             <Card sx={{ height: "300px" }}>
