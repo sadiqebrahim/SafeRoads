@@ -70,15 +70,20 @@ npm start
 Now, you should be able to access the full application by visiting http://localhost:3000 in your web browser.
 
 
-## Screenshots
+## Web Application Screenshots
 
-### Home of the Web Application
+### Home Page
 ![S1](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/home.png?raw=true)
+### Live CCTV Page 
+![S2](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/live-cctv.png?raw=true)
+### Detect Accident Page
+![S3](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/detect-accident.png?raw=true)
 
-### Examples of detection<br>
-![S2](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred1.jpg?raw=true)
-![S3](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred2.jpg?raw=true)
-![S4](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred3.jpg?raw=true)
+
+## Accident Detection Examples<br>
+![S4](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred1.jpg?raw=true)
+![S5](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred2.jpg?raw=true)
+![S6](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred3.jpg?raw=true)
 
 ## Additional Comments
 
