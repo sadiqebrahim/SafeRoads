@@ -81,9 +81,13 @@ Now, you should be able to access the full application by visiting http://localh
 
 
 ## Accident Detection Examples<br>
-![S4](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred1.jpg?raw=true)
-![S5](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred2.jpg?raw=true)
-![S6](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred3.jpg?raw=true)
+![S4](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred1.jpg?raw=true)<br/>
+![S5](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred2.jpg?raw=true)<br/>
+![S6](https://github.com/sadiqebrahim/SafeRoads/blob/main/readme/pred3.jpg?raw=true)<br/>
+
+## Contributors
+<b>1. [Sadiq Siraj Ebrahim](https://github.com/sadiqebrahim)</b> : Developed the  machine learning model for real-time accident detection utilizing computer vision and deep learning, complemented by detailed documentation.<br/>
+<b>2. [Gourav Dutta](https://github.com/GouravDutta-01)</b> : Developed a user-friendly web application with React.js and Material UI and established a Flask server, facilitating seamless integration with the machine learning model for effective user-system communication.
 
 ## Additional Comments
 
